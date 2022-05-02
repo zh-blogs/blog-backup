@@ -11,7 +11,7 @@ import (
 )
 
 var apiUrl = "https://zhblogs.ohyee.cc/api/blogs?size=-1&status=0"
-var maxNum = 3
+var maxNum = 20
 var dataDir = "./database"
 
 func main() {
