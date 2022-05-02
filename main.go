@@ -61,7 +61,7 @@ func parseData(blogs []interface{}) {
 }
 
 func writeToFile(data []byte) {
-	timeNow := time.Now().Format("01-02-15:04:05")
+	timeNow := time.Now().Format("01-02-15-04")
 	path := dataDir + "/data-" + timeNow + ".json"
 
 	if err := ioutil.WriteFile(path, data, 0644); err == nil {

@@ -1,9 +1,7 @@
 name: GetDataBase
 on:
   push:
-    branches: [ action ]
-  schedule:
-    cron: "30 1 * * *"
+    branches: [ main ]
 jobs:
   builds:
     name: GetDataBase
@@ -17,13 +15,19 @@ jobs:
         with:
           go-version: 1.18
 
-      - name: run
+      - name: Run
         run: go run main.go
 
-      - name: commit
-        uses: actions/checkout@v3
+      - name: Commit Files
+        run: |
+          git config --global user.email "github-action@example.com"
+          git config --global user.name "github-actions"
+          git add .
+          git commit -m "update data-`date +%m-%d-%H-%M`.json"
+
+      - name: Push
+        uses: ad-m/github-actions-push@v1
         with:
-          path: .
-          message: "Update database"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
-          hash: $(git rev-parse HEAD)
+          force: true
