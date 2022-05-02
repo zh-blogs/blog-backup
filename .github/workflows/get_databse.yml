@@ -2,6 +2,8 @@ name: GetDataBase
 on:
   push:
     branches: [ action ]
+  schedule:
+    cron: "30 1 * * *"
 jobs:
   builds:
     name: GetDataBase
@@ -18,6 +20,10 @@ jobs:
       - name: run
         run: go run main.go
 
-      - name: test local
-        run: |
-          ls -l
+      - name: commit
+        uses: actions/checkout@v3
+        with:
+          path: .
+          message: "Update database"
+          branch: main
+          hash: $(git rev-parse HEAD)
