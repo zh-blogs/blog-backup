@@ -74,12 +74,13 @@ func writeToFile(data []byte) {
 func deleteOldestFile() {
 	if list, err := ioutil.ReadDir("database"); err == nil {
 		for _, file := range list {
-			if getDataFileNum() >= maxNum {
-				if err := os.Remove(dataDir + "/" + file.Name()); err == nil {
-					log.Printf("delete %s", file.Name())
-				} else {
-					log.Printf("error when delete file: %s", err)
-				}
+			if getDataFileNum() < maxNum {
+				break
+			}
+			if err := os.Remove(dataDir + "/" + file.Name()); err == nil {
+				log.Printf("delete %s", file.Name())
+			} else {
+				log.Printf("error when delete file: %s", err)
 			}
 		}
 	} else {
