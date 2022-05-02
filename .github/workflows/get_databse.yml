@@ -26,7 +26,7 @@ jobs:
           git commit -m "update data-`date +%m-%d-%H-%M`.json"
 
       - name: Push
-        uses: ad-m/github-actions-push@v1
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
