@@ -20,5 +20,4 @@ jobs:
 
       - name: test local
         run: |
-          ls -l 
-          && cat data.json
+          ls -l
