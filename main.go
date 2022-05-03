@@ -22,7 +22,7 @@ func main() {
 		}(res.Body)
 		var responseBody map[string]interface{}
 		if err = json.NewDecoder(res.Body).Decode(&responseBody); err != nil {
-			log.Print(err)
+			log.Fatal(err)
 		}
 		// success
 		isResValid(responseBody)
