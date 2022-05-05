@@ -1,5 +1,7 @@
 name: GetDataBase
-on: [push]
+on:
+  schedule:
+    - cron: '30 1 * * *'
 jobs:
   builds:
     name: GetDataBase
