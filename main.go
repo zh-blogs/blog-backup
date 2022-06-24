@@ -29,6 +29,8 @@ func main() {
 		total := responseBody["data"].(map[string]interface{})["total"].(float64)
 		log.Printf("get %.0f blogs", total)
 		parseData(responseBody["data"].(map[string]interface{})["blogs"].([]interface{}))
+	} else {
+		log.Fatalf("httpGet Err %s", err)
 	}
 }
 
