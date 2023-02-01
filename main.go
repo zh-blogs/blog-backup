@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-var apiUrl = "https://zhblogs.ohyee.cc/api/blogs?size=-1&status=0"
+var apiUrl = "https://zhblogs.ohyee.cc/api/blogs?size=-1&status=0&hash=1tYgiQWZKDjIihy"
 var maxNum = 20
 var dataDir = "./database"
 
