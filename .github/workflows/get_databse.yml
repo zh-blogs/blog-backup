@@ -2,6 +2,7 @@ name: GetDataBase
 on:
   schedule:
     - cron: '30 1 * * *'
+  workflow_dispatch:
 jobs:
   builds:
     name: GetDataBase
