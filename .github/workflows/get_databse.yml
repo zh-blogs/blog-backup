@@ -1,0 +1,39 @@
+name: GetDataBase
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+    environment:
+      DEBUG: true
+jobs:
+  builds:
+    name: Backup Database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+
+      - name: Set up Golang Runtime
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.21
+
+      - name: Run
+        run: go run main.go
+
+      - name: Commit Files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add --all
+          if git diff --cached --quiet; then
+            echo "No changes to the output on this run"
+            exit 0
+          fi
+          git commit -m "update blogs.dat at `date +%m-%d-%H-%M`"
+
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
